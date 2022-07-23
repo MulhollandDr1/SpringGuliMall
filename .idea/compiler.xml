@@ -6,16 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gulimall-coupon" />
+        <module name="gulimall-order" />
+        <module name="gulimall-member" />
+        <module name="gulimall-ware" />
         <module name="gulimall-product" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="gulimall-coupon" target="1.8" />
+      <module name="gulimall-member" target="1.8" />
+      <module name="gulimall-order" target="1.8" />
+      <module name="gulimall-produce" target="1.8" />
       <module name="gulimall-product" target="1.8" />
+      <module name="gulimall-ware" target="1.8" />
+      <module name="SpringGuliMall" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gulimall-coupon" options="-parameters" />
+      <module name="gulimall-member" options="-parameters" />
+      <module name="gulimall-order" options="-parameters" />
+      <module name="gulimall-produce" options="-parameters" />
       <module name="gulimall-product" options="-parameters" />
+      <module name="gulimall-ware" options="-parameters" />
     </option>
   </component>
 </project>

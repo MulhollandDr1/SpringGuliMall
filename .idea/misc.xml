@@ -3,6 +3,11 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/gulimall-member/pom.xml" />
+        <option value="$PROJECT_DIR$/gulimall-coupon/pom.xml" />
+        <option value="$PROJECT_DIR$/gulimall-order/pom.xml" />
+        <option value="$PROJECT_DIR$/gulimall-ware/pom.xml" />
         <option value="$PROJECT_DIR$/gulimall-product/pom.xml" />
       </list>
     </option>
