@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.248.128:3306/gulimall_pms?characterEncoding=UTF-8 # 支持插入中文字符
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: xw19980412
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-product
+  messages:
+    encoding: UTF-8
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+#      logic-delete-field: showStatus  //配置后，该逻辑删除字段会在数据库的所有表中生效，最好在需要逻辑删除的字段中加入@TableLogic注解，这样就只会在当前表生效，不会干扰别的表
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+server:
+  port: 10001
+  error:
+    include-message: always
+    include-binding-errors: always #开启校验错误信息提示
+alibaba:
+  cloud:
+    access-key: LTAI5tBFFsTiXgessjJFvPN6
+    secret-key: UZxj0pn6OBOn6C7AZvt6awtyIDztsQ
+    oss:
+      endpoint: oss-cn-hangzhou.aliyuncs.com
+# 用户登录名称 gulimall@1628646896297766.onaliyun.com
+  #AccessKey ID LTAI5tBFFsTiXgessjJFvPN6
+  #AccessKey Secret UZxj0pn6OBOn6C7AZvt6awtyIDztsQ

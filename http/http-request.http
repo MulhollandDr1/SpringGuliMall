@@ -1,0 +1,26 @@
+POST http://localhost:88/api/product/category/delete
+Content-Type: application/json
+
+[1422]
+
+###
+GET localhost:10001/product/category/list/tree
+
+###
+
+POST localhost:10001/product/category/delete
+Content-Type: application/json
+
+###
+
+POST http://localhost:88/api/product/brand/update
+Content-Type: application/json
+
+{"brandId":1,"showStatus":4}
+
+###
+
+POST http://localhost:88/api/product/brand/save
+Content-Type: application/json
+
+{"name": "22","brandId": 3}
