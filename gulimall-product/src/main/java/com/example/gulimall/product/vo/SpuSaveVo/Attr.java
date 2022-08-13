@@ -1,18 +1,21 @@
-
+/**
+  * Copyright 2022 bejson.com 
+  */
 package com.example.gulimall.product.vo.SpuSaveVo;
 
 import lombok.Data;
 
 /**
- * Auto-generated: 2022-08-14 4:53:21
+ * Auto-generated: 2022-08-14 5:23:6
  *
- * @author www.jsons.cn 
- * @website http://www.jsons.cn/json2java/ 
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
  */
 @Data
 public class Attr {
 
-    private int attrid;
-    private String attrname;
-    private String attrvalue;
+    private int attrId;
+    private String attrName;
+    private String attrValue;
+
 }

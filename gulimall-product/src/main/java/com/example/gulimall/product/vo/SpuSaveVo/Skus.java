@@ -1,31 +1,32 @@
+/**
+  * Copyright 2022 bejson.com 
+  */
 package com.example.gulimall.product.vo.SpuSaveVo;
-
 import lombok.Data;
 
 import java.util.List;
+import java.util.Date;
 
 /**
- * Auto-generated: 2022-08-14 4:53:21
+ * Auto-generated: 2022-08-14 5:23:6
  *
- * @author www.jsons.cn 
- * @website http://www.jsons.cn/json2java/ 
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
  */
 @Data
 public class Skus {
-
     private List<Attr> attr;
-    private String skuname;
+    private Date skuName;
     private String price;
-    private String skutitle;
-    private String skusubtitle;
+    private String skuTitle;
+    private String skuSubtitle;
     private List<Images> images;
     private List<String> descar;
-    private int fullcount;
+    private int fullCount;
     private double discount;
-    private int countstatus;
-    private int fullprice;
-    private int reduceprice;
-    private int pricestatus;
-    private List<Memberprice> memberprice;
-
+    private int countStatus;
+    private int fullPrice;
+    private int reducePrice;
+    private int priceStatus;
+    private List<MemberPrice> memberPrice;
 }
