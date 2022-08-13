@@ -2,8 +2,10 @@ package com.example.gulimall.product.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class AttrVo {
+public class AttrResponseVo {
     private Long attrId;
     /**
      * 属性名
@@ -42,4 +44,8 @@ public class AttrVo {
      */
     private Integer showDesc;
     private Long attrGroupId;
+    private String catelogName;
+    private String groupName;
+    private Long[] catelogPath;
+
 }

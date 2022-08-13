@@ -3,12 +3,11 @@ package com.example.gulimall.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.gulimall.product.dao.CategoryBrandRelationDao;
 import com.example.gulimall.product.entity.CategoryBrandRelationEntity;
-import com.example.gulimall.product.service.CategoryBrandRelationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -71,5 +70,11 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 //            System.out.println(categoryBrandRelationEntity);
         }
 //        TODO 更新其他关联
+    }
+
+    @Override
+    public void removeBrandAndRelation(Long[] brandIds) {
+        this.removeByIds(Arrays.asList(brandIds));
+        categoryBrandRelationDao.delete(new QueryWrapper<CategoryBrandRelationEntity>().in("brand_id",Arrays.asList(brandIds)));
     }
 }

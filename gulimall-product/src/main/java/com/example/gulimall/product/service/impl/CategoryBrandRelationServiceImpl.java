@@ -6,6 +6,8 @@ import com.example.gulimall.product.service.BrandService;
 import com.example.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -43,6 +45,11 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         categoryBrandRelation.setBrandName(brandEntity.getName());
         categoryBrandRelation.setCatelogName(categoryEntity.getName());
         this.save(categoryBrandRelation);
+    }
+
+    @Override
+    public List<CategoryBrandRelationEntity> getBrandsByCatId(Long catId) {
+        return this.baseMapper.selectList(new QueryWrapper<CategoryBrandRelationEntity>().in("catelog_id", catId));
     }
 
 }

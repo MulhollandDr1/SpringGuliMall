@@ -3,15 +3,14 @@ package com.example.gulimall.product.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.gulimall.product.vo.CategoryBrandRelationVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.gulimall.product.entity.CategoryBrandRelationEntity;
 import com.example.gulimall.product.service.CategoryBrandRelationService;
@@ -42,7 +41,7 @@ public class CategoryBrandRelationController {
         QueryWrapper<CategoryBrandRelationEntity> categoryBrandRelationEntityQueryWrapper = new QueryWrapper<>();
         categoryBrandRelationEntityQueryWrapper.eq("brand_id", brandId);
         List<CategoryBrandRelationEntity> list = categoryBrandRelationService.list(categoryBrandRelationEntityQueryWrapper);
-        return R.ok().put("data",list);
+        return R.ok().put("data", list);
     }
 
 
@@ -90,4 +89,16 @@ public class CategoryBrandRelationController {
         return R.ok();
     }
 
+    @GetMapping("/brands/list")
+    public R relationBrandsList(@RequestParam("catId") Long catId) {
+        List<CategoryBrandRelationEntity> brands = categoryBrandRelationService.getBrandsByCatId(catId);
+        List<CategoryBrandRelationVo> collect = brands.stream().map(
+                brand -> {
+                    CategoryBrandRelationVo categoryBrandRelationVo = new CategoryBrandRelationVo();
+                    BeanUtils.copyProperties(brand, categoryBrandRelationVo);
+                    return categoryBrandRelationVo;
+                }
+        ).collect(Collectors.toList());
+        return R.ok().put("data", collect);
+    }
 }

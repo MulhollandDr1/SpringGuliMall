@@ -42,6 +42,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public void removeMenuByIds(List<Long> asList) {
         //TODO 1、检查当前删除的菜单，是否被别的地方调用
         baseMapper.deleteBatchIds(asList);
+        categoryBrandRelationDao.delete(new QueryWrapper<CategoryBrandRelationEntity>().in("catelog_id",asList));
     }
 
     @Override

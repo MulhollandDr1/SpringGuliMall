@@ -11,6 +11,18 @@ spring:
           uri: https://www.baidu.com
           predicates:
             - Query=url,baidu
+        - id: gulimall-coupon
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: gulimall-member
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
         - id: gulimall-product
           uri: lb://gulimall-product
           predicates:

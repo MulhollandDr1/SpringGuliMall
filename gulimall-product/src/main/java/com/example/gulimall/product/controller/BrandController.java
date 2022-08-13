@@ -97,7 +97,8 @@ public class BrandController {
     @RequestMapping("/delete")
 
     public R delete(@RequestBody Long[] brandIds) {
-        brandService.removeByIds(Arrays.asList(brandIds));
+//        brandService.removeByIds(Arrays.asList(brandIds));
+        brandService.removeBrandAndRelation(brandIds);
 
         return R.ok();
     }
