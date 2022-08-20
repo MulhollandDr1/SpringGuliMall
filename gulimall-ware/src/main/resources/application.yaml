@@ -6,7 +6,18 @@ spring:
     username: root
     password: xw19980412
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-ware
+  jackson:
+    date-format: java.text.SimpleDateFormat
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+logging:
+  level:
+    com.example.gulimall.ware: debug

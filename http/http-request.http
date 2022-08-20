@@ -24,3 +24,23 @@ POST http://localhost:88/api/product/brand/save
 Content-Type: application/json
 
 {"name": "22","brandId": 3}
+
+###
+
+POST http://localhost:88/api/ware/purchase/received
+Content-Type: application/json
+
+[1]
+
+###
+
+POST http://localhost:88/api/ware/purchase/done
+Content-Type: application/json
+
+{
+  "id":7,
+  "items":[
+    {"itemId": 4,"status": 3,"reason": ""},
+    {"itemId": 5,"status": 3,"reason": ""}
+  ]
+}

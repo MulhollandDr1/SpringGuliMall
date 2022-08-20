@@ -1,5 +1,6 @@
 package com.example.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -22,7 +23,7 @@ public class SpuInfoDescEntity implements Serializable {
 	/**
 	 * 商品id
 	 */
-	@TableId
+	@TableId(type = IdType.INPUT)  /*mybatis-plus 默认主键id为自增字段，后续操作不会对其赋值。因此需要修改字段类型*/
 	private Long spuId;
 	/**
 	 * 商品介绍

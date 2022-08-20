@@ -1,5 +1,6 @@
 package com.example.gulimall.ware.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -23,6 +24,24 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                 new QueryWrapper<WareSkuEntity>()
         );
 
+        return new PageUtils(page);
+    }
+
+    @Override
+    public PageUtils queryPageByCondition(Map<String, Object> params) {
+        String skuId = (String) params.get("skuId");
+        String wareId = (String) params.get("wareId");
+        QueryWrapper<WareSkuEntity> wareSkuEntityQueryWrapper = new QueryWrapper<>();
+        if(StringUtils.isNotEmpty(skuId)){
+            wareSkuEntityQueryWrapper.eq("sku_id",skuId);
+        }
+        if(StringUtils.isNotEmpty(wareId)){
+            wareSkuEntityQueryWrapper.eq("ware_id",wareId);
+        }
+        IPage<WareSkuEntity> page = this.page(
+                new Query<WareSkuEntity>().getPage(params),
+                wareSkuEntityQueryWrapper
+        );
         return new PageUtils(page);
     }
 

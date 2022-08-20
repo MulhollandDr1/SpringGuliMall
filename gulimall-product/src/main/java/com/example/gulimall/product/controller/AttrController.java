@@ -1,17 +1,20 @@
 package com.example.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
+import com.example.gulimall.product.entity.ProductAttrValueEntity;
+import com.example.gulimall.product.entity.SpuInfoEntity;
+import com.example.gulimall.product.service.ProductAttrValueService;
+import com.example.gulimall.product.service.SpuInfoService;
 import com.example.gulimall.product.vo.AttrResponseVo;
 import com.example.gulimall.product.vo.AttrVo;
+import com.example.gulimall.product.vo.ProductAttrVo;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.gulimall.product.entity.AttrEntity;
 import com.example.gulimall.product.service.AttrService;
@@ -32,7 +35,8 @@ import com.example.common.utils.R;
 public class AttrController {
     @Autowired
     private AttrService attrService;
-
+    @Autowired
+    ProductAttrValueService productAttrValueService;
     /**
      * 列表
      */
@@ -97,5 +101,14 @@ public class AttrController {
 
         return R.ok();
     }
-
+    @GetMapping("/base/listforspu/{spuId}")
+    public R listForSpu(@PathVariable("spuId") Long spuId){
+        List<ProductAttrValueEntity> productAttrList = productAttrValueService.listForSpu(spuId);
+        return R.ok().put("data",productAttrList);
+    }
+    @PostMapping("/update/{spuId}")
+    public R updateProductAttr(@PathVariable("spuId") Long spuId, @RequestBody List<ProductAttrVo> productAttrVos){
+        productAttrValueService.updateProductAttr(spuId,productAttrVos);
+        return R.ok();
+    }
 }

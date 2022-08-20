@@ -1,9 +1,11 @@
 /**
   * Copyright 2022 bejson.com 
   */
-package com.example.gulimall.product.vo.SpuSaveVo;
+package com.example.common.to;
 
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 /**
  * Auto-generated: 2022-08-14 5:23:6
@@ -13,7 +15,7 @@ import lombok.Data;
  */
 @Data
 public class MemberPrice {
-    private int id;
+    private Long id;
     private String name;
-    private int price;
+    private BigDecimal price;
 }

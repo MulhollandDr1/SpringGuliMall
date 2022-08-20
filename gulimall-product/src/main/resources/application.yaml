@@ -12,6 +12,8 @@ spring:
     name: gulimall-product
   messages:
     encoding: UTF-8
+  jackson:
+    date-format: java.text.SimpleDateFormat
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   global-config:
@@ -34,10 +36,8 @@ alibaba:
 # 用户登录名称 gulimall@1628646896297766.onaliyun.com
   #AccessKey ID LTAI5tBFFsTiXgessjJFvPN6
   #AccessKey Secret UZxj0pn6OBOn6C7AZvt6awtyIDztsQ
-#logging:
-#  level:
-#    com:
-#      example:
-#        gulimall:
-#          product:
-#            dao: debug
+logging:
+  level:
+    com:
+      example:
+        gulimall: debug

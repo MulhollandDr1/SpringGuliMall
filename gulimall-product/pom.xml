@@ -15,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
+        <elasticsearch.version>7.4.2</elasticsearch.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,6 +37,8 @@
             <artifactId>mybatis-plus-extension</artifactId>
             <version>3.4.1</version>
         </dependency>
+
+
     </dependencies>
 
     <build>
