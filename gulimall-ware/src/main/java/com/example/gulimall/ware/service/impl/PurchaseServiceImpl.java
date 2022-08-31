@@ -126,7 +126,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                     wareSkuEntity.setSkuId(purchaseDetailEntity.getSkuId());
                     wareSkuEntity.setWareId(purchaseDetailEntity.getWareId());
                     wareSkuEntity.setStock(purchaseDetailEntity.getSkuNum());
-                    wareSkuEntity.setStock(0);
                     try{
                         R r = productFeignService.info(purchaseDetailEntity.getSkuId());
                         Map<String,Object> data = (Map<String, Object>) r.get("skuInfo");

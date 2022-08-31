@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.gulimall.ware.dao.WareSkuDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.example.gulimall.ware.entity.WareSkuEntity" id="wareSkuMap">
         <result property="id" column="id"/>
         <result property="skuId" column="sku_id"/>
@@ -12,9 +12,24 @@
         <result property="skuName" column="sku_name"/>
         <result property="stockLocked" column="stock_locked"/>
     </resultMap>
+    <resultMap id="stockMap" type="com.example.common.to.es.SkuStockTo">
+        <result property="skuId" column="sku_id"></result>
+        <result property="stock" column="stock"></result>
+    </resultMap>
     <update id="updateStock">
-        UPDATE wms_ware_sku SET stock = stock + #{skuNum} WHERE sku_id = #{skuId} AND ware_id = #{wareId}
+        UPDATE wms_ware_sku
+        SET stock = stock + #{skuNum}
+        WHERE sku_id = #{skuId}
+          AND ware_id = #{wareId}
     </update>
+    <select id="selectStockList" resultType="com.example.common.to.es.SkuStockTo" resultMap="stockMap">
+        SELECT SUM(stock /*- stock_locked*/) AS stock,sku_id FROM wms_ware_sku
+        <where>
+            <foreach collection="skuIds" item="skuId" open="sku_id in (" close=") group by sku_id" separator=",">
+                #{skuId}
+            </foreach>
+        </where>
+    </select>
 
 
 </mapper>

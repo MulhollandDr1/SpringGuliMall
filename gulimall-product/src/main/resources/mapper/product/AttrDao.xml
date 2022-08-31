@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.gulimall.product.dao.AttrDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.example.gulimall.product.entity.AttrEntity" id="attrMap">
         <result property="attrId" column="attr_id"/>
         <result property="attrName" column="attr_name"/>
@@ -16,6 +16,15 @@
         <result property="catelogId" column="catelog_id"/>
         <result property="showDesc" column="show_desc"/>
     </resultMap>
+    <select id="selectSearchAttrIds" resultType="java.lang.Long">
+        SELECT attr_id FROM pms_attr
+        <where>
+            <foreach collection="spuAttrIds" item="spuAttrId" separator="," open="attr_id in (" close=")">
+                #{spuAttrId}
+            </foreach>
+        </where>
+        AND search_type = 1
+    </select>
 
 
 </mapper>

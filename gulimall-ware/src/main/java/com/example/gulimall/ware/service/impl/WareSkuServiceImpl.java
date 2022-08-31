@@ -1,7 +1,10 @@
 package com.example.gulimall.ware.service.impl;
 
+import com.example.common.to.es.SkuStockTo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -43,6 +46,12 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
                 wareSkuEntityQueryWrapper
         );
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<SkuStockTo> hasStock(List<Long> skuIds) {
+        List<SkuStockTo> stockList = baseMapper.selectStockList(skuIds); /*在mybatis的xml中创建resultMap，就可以将dao的多个返回值一一对应到SkuStockTo中*/
+        return stockList;
     }
 
 }

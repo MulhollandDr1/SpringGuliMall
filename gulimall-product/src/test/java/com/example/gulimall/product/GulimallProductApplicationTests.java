@@ -3,13 +3,23 @@ package com.example.gulimall.product;
 import com.example.gulimall.product.entity.BrandEntity;
 import com.example.gulimall.product.service.BrandService;
 import org.junit.jupiter.api.Test;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+
+import java.util.UUID;
 
 @SpringBootTest
 class GulimallProductApplicationTests {
     @Autowired
     BrandService brandService;
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    RedissonClient redissonClient;
     @Test
     void contextLoads() {
     }
@@ -54,5 +64,14 @@ class GulimallProductApplicationTests {
             }
         }
     }*/
-
+    @Test
+    public void StringRedisTemplate(){
+        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+        ops.set("hello","world" + UUID.randomUUID());
+        System.out.println("ops.get() : " + ops.get("hello"));
+    }
+    @Test
+    public void RedissonClient(){
+        System.out.println(redissonClient);
+    }
 }

@@ -47,13 +47,13 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
     @Override
     public void saveInfo(SkuReductionTo skuReductionTo) {
         SkuFullReductionEntity skuFullReductionEntity = new SkuFullReductionEntity();
-        if(skuFullReductionEntity.getFullPrice().compareTo(new BigDecimal("0")) == 1 && skuFullReductionEntity.getReducePrice().compareTo(new BigDecimal("0")) == 1){
+        if(skuReductionTo.getFullPrice().compareTo(new BigDecimal("0")) == 1 && skuReductionTo.getReducePrice().compareTo(new BigDecimal("0")) == 1){
             BeanUtils.copyProperties(skuReductionTo,skuFullReductionEntity);
             skuFullReductionEntity.setAddOther(skuReductionTo.getCountStatus());
             this.baseMapper.insert(skuFullReductionEntity);
         }
         SkuLadderEntity skuLadderEntity = new SkuLadderEntity();
-        if(skuLadderEntity.getFullCount() > 0 && skuLadderEntity.getDiscount().compareTo(new BigDecimal("0")) == 1){
+        if(skuReductionTo.getFullCount() > 0 && skuReductionTo.getDiscount().compareTo(new BigDecimal("0")) == 1){
             BeanUtils.copyProperties(skuReductionTo,skuLadderEntity);
             skuLadderDao.insert(skuLadderEntity);
         }

@@ -30,7 +30,7 @@ Content-Type: application/json
 POST http://localhost:88/api/ware/purchase/received
 Content-Type: application/json
 
-[1]
+[8]
 
 ###
 
@@ -38,9 +38,8 @@ POST http://localhost:88/api/ware/purchase/done
 Content-Type: application/json
 
 {
-  "id":7,
+  "id":8,
   "items":[
-    {"itemId": 4,"status": 3,"reason": ""},
-    {"itemId": 5,"status": 3,"reason": ""}
+    {"itemId": 6,"status": 3,"reason": ""}
   ]
 }

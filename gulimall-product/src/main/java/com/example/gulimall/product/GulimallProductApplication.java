@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 @EnableTransactionManagement
 @EnableFeignClients(basePackages = "com.example.gulimall.product.feign")
 @EnableDiscoveryClient

@@ -1,15 +1,13 @@
 package com.example.gulimall.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
+import com.example.common.to.es.SkuStockTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.gulimall.ware.entity.WareSkuEntity;
 import com.example.gulimall.ware.service.WareSkuService;
@@ -86,5 +84,9 @@ public class WareSkuController {
 
         return R.ok();
     }
-
+    @PostMapping("/hasStock")
+    public R hasStock(@RequestBody List<Long> skuIds){
+        List<SkuStockTo> skuStockTos = wareSkuService.hasStock(skuIds);
+        return R.ok().setDate(skuStockTos);
+    }
 }
