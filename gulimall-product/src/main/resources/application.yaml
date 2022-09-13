@@ -49,3 +49,8 @@ logging:
     com:
       example:
         gulimall: debug
+gulimall:
+  thread:
+    core-pool-size: 20
+    keep-alive-time: 10
+    maximum-pool-size: 200

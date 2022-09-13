@@ -1,0 +1,146 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "skuTitle": "移动"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "term": {
+            "catalogId": "225"
+          }
+        },
+        {
+          "terms": {
+            "brandId": [
+              "3",
+              "2"
+            ]
+          }
+        },
+        {
+          "nested": {
+            "path": "attrs",
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "terms": {
+                      "attrs.attrValue": [
+                        "荣耀 X30",
+                        "Apple iPhone 12"
+                      ]
+                    }
+                  },
+                  {
+                    "term": {
+                      "attrs.attrId": {
+                        "value": "37"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "term": {
+            "hasStock": "false"
+          }
+        },
+        {
+          "range": {
+            "skuPrice": {
+              "gte": 10,
+              "lte": 6000
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "skuPrice": {
+        "order": "desc"
+      }
+    }
+  ],
+  "from": 0,
+  "size": 3,
+  "highlight": {
+    "fields": {
+      "skuTitle": {}
+    },
+    "pre_tags": "<b style='color:red'>",
+    "post_tags": "</b>"
+  },
+  "aggs": {
+    "brandId_aggs": {
+      "terms": {
+        "field": "brandId",
+        "size": 10
+      },
+      "aggs": {
+        "brandName_aggs": {
+          "terms": {
+            "field": "brandName",
+            "size": 10
+          }
+        },
+        "brandImg_aggs": {
+          "terms": {
+            "field": "brandImg",
+            "size": 10
+          }
+        }
+      }
+    },
+    "catalogId_aggs": {
+      "terms": {
+        "field": "catalogId",
+        "size": 10
+      },
+      "aggs": {
+        "catalogName_aggs": {
+          "terms": {
+            "field": "catalogName",
+            "size": 10
+          }
+        }
+      }
+    },
+    "attrs": {
+      "nested": {
+        "path": "attrs"
+      },
+      "aggs": {
+        "attrs_aggs": {
+          "terms": {
+            "field": "attrs.attrId",
+            "size": 10
+          },
+          "aggs": {
+            "attrsName_aggs": {
+              "terms": {
+                "field": "attrs.attrName",
+                "size": 10
+              }
+            },
+            "attrsValue_aggs": {
+              "terms": {
+                "field": "attrs.attrValue",
+                "size": 10
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

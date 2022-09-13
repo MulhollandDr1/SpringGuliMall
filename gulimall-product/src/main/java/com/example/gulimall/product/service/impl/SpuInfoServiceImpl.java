@@ -216,7 +216,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         Set<Long> spuAttrIdSet = productAttrValueEntities.stream().map(ProductAttrValueEntity::getAttrId).collect(Collectors.toSet());  /*spuAttrIds的List中有很多sku重复的属性id，为了后续查找数据库效率，把list转换成set，去掉重复值*/
         Set<Long> attrIds = attrDao.selectSearchAttrIds(spuAttrIdSet);
         /*可检索的spuAttr*/
-        List<ProductAttrValueEntity> productAttrValueEntityList = productAttrValueService.list(new QueryWrapper<ProductAttrValueEntity>().in("attr_id", attrIds));
+        List<ProductAttrValueEntity> productAttrValueEntityList = productAttrValueService.list(new QueryWrapper<ProductAttrValueEntity>().in("attr_id", attrIds).eq("spu_id",spuId));
         List<SkuEsTo.Attr> esAttrs = productAttrValueEntityList.stream().map(
                 productAttrValueEntity -> {
                     SkuEsTo.Attr attr = new SkuEsTo.Attr();

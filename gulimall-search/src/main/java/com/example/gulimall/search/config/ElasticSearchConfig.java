@@ -20,7 +20,7 @@ public class ElasticSearchConfig {
                         .HeapBufferedResponseConsumerFactory(30 * 1024 * 1024 * 1024));*/
         COMMON_OPTIONS = builder.build();
     }
-/*esClient 用来发出请求，等等操作*/
+/*esClient 用来发出请求等操作*/
     @Bean
     public RestHighLevelClient esClient() {
         RestHighLevelClient esClient = new RestHighLevelClient(

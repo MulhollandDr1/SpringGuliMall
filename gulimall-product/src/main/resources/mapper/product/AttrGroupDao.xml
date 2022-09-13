@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.gulimall.product.dao.AttrGroupDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.example.gulimall.product.entity.AttrGroupEntity" id="attrGroupMap">
         <result property="attrGroupId" column="attr_group_id"/>
         <result property="attrGroupName" column="attr_group_name"/>
@@ -12,6 +12,21 @@
         <result property="icon" column="icon"/>
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
+    <resultMap id="SkuItemBaseAttrVo" type="com.example.gulimall.product.vo.SkuItemBaseAttrVo">
+        <result property="attrGroupName" column="attr_group_name"></result>
+        <collection property="baseAttrVoList" ofType="com.example.gulimall.product.vo.BaseAttrVo">
+            <result property="attrName" column="attr_name"></result>
+            <result property="attrValue" column="attr_value"></result>
+        </collection>
+    </resultMap>
+    <select id="getAttrGroupAndAttrs" resultMap="SkuItemBaseAttrVo">
+        select distinct ag.attr_group_name, pav.attr_name, pav.attr_value
+        from pms_attr_group ag
+                 left join pms_attr_attrgroup_relation aar on aar.attr_group_id = ag.attr_group_id
+                 left join pms_product_attr_value pav on pav.attr_id = aar.attr_id
+        where pav.spu_id = #{spuId}
+          and ag.catelog_id = #{catalogId}
+    </select>
 
 
 </mapper>
