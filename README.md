@@ -1,2 +1,2 @@
 # SpringGuliMall
-谷粒商城
+网上购物商城
